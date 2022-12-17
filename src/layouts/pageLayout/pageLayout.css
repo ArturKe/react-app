@@ -1,0 +1,21 @@
+.page {
+    display: flex;
+    flex-direction: column;
+}
+.page-header {
+    width: 100%;
+}
+.page-content {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+}
+.page-content-center {
+    width: 60%;
+    min-width: 350px;
+}
+.page-footer {
+    width: 100%;
+    min-height: 100px;
+    background-color:rgb(91 91 91);
+}

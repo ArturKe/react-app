@@ -5,8 +5,8 @@ import router from './routes/user.routes.js'
 
 const PORT = process.env.PORT || 3000
 
-app.use(express.static('../dist'));
-// app.use(express.static('./backend/dist'));
+// app.use(express.static('../dist'));
+app.use(express.static('dist'));
 
 app.get("/help", (req, res) => {
 	res.send("Here is some HELP")
@@ -29,7 +29,7 @@ app.all('/api/*', function(req, res, next)
 });
 app.use('/api', router)
 
-router.get('*', (req, res) => {
+app.get('/*', (req, res) => {
 	res.send('НИЧЕГО НЕ НАЙДЕНО!!!')
 })
 

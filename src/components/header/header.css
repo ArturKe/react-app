@@ -1,0 +1,23 @@
+.header_component {
+    min-height: 65px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    background-color: #636363;
+}
+.header_component-logo {
+    display: flex;
+}
+
+.header_component-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.logo {
+    height: 3em;
+    will-change: filter;
+    margin: 0 15px;
+}

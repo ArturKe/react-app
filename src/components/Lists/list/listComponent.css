@@ -1,0 +1,30 @@
+.list {
+    margin: 10px 0;
+}
+.list-header {
+    padding: 10px 30px;
+    border: 1px solid;
+    border-radius: 16px 16px 5px 5px;
+    border-color: #cccccc;
+    font-size: 1.6em;
+}
+.list-controll {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 54px;
+    padding: 0 10px;
+}
+.list-controll-buttons {
+    display: flex;
+    gap: 10px;
+}
+.list-content {
+    padding: 10px;
+    height: 100%;
+    background-color: rgb(190, 192, 178);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+}
