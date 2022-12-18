@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { useEffect } from 'react';
-import './checkbox.css';
+import './Checkbox.css';
 
 export default function Checkbox (props) {
     const [checkBoxState, setCheckBoxState] = useState(props.isActive || false)
@@ -11,7 +11,10 @@ export default function Checkbox (props) {
             props.event(!checkBoxState)
         }
     }
-    useEffect(() => setCheckBoxState(props.isActive),[props.isActive])
+    useEffect(() => {
+        console.log('CheckBox Props: ' + props.isActive)
+        setCheckBoxState(props.isActive)
+    },[props.isActive])
     return (
         <div>
             <div onClick={() => handler()} className={['customCheckbox', `${checkBoxState ? 'active' : ''}`].join(' ')}></div>

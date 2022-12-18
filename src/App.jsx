@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import Button from './components/Button/button'
-import Checkbox from './components/checkbox/Checkbox'
-import PageLayout from './layouts/pageLayout/PageLayout'
+import PageLayout from './layouts/Page/PageLayout'
 import Header from './components/header/Header'
 import ListComponent from './components/Lists/list/ListComponent'
 
