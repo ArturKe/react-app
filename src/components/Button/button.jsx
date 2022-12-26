@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import './button.css';
+import './Button.css';
 
 export default function Button (props) {
     // const [name, setName] = useState(props.name)

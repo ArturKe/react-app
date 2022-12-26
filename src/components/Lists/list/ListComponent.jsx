@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Button from '../../Button/button';
+import Button from '../../button/Button';
 import Checkbox from '../../checkbox/Checkbox';
+import EditForm from '../../modals/edit/EditForm';
 import WarnModal from '../../modals/Warn/WarnModal';
 import ListItem from '../Item/ListItem';
 import './listComponent.css';
@@ -22,13 +23,15 @@ export default function ListComponent (props) {
         deleteAllAction()
     }
     const deleteRecord = (id, title) => {
-        // toggleVisWarnModal()
+        toggleVisWarnModal()
         console.log('Delete record with id: ' + id + title)
         setWarnModalTitle(`Delete record: "${title}"?`)
         deleteAction(id)
     }
-    const editRecord = (id) => {
-        console.log('Edit record with id: ' + id)
+    const editRecord = (id, title) => {
+        toggleVisEditForm()
+        setWarnModalTitle(title)
+        console.log('Edit record with id: ' + id + title)
     }
     const selectAll = (state) => {
         setCheckBoxState(state)
@@ -62,15 +65,21 @@ export default function ListComponent (props) {
 
     // Modals
     const [warnModalVisible, setWarnModalVisible] = useState(false)
+    const [EditFormVisible, setEditFormVisible] = useState(false)
     const [warnModalTitle, setWarnModalTitle] = useState('')
     const modalWarn = () => {
         return warnModalVisible ? <WarnModal title={warnModalTitle} event={toggleVisWarnModal}></WarnModal> : null
     }
+    const editForm = () => {
+        return EditFormVisible ? <EditForm title={warnModalTitle} event={toggleVisEditForm}></EditForm> : null
+    }
     const toggleVisWarnModal = () => {setWarnModalVisible(!warnModalVisible)}
+    const toggleVisEditForm = () => {setEditFormVisible(!EditFormVisible)}
 
     return (
         <div className='list'>
             {modalWarn()}
+            {editForm()}
             <div className='list-header'>Header</div>
             <div className='list-controll'>
                 <Checkbox isActive={checkBoxState} event={selectAll}></Checkbox>

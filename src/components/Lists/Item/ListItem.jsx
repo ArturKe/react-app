@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import Button from '../../Button/button';
+import Button from '../../button/Button';
 import Checkbox from '../../checkbox/Checkbox';
 import './ListItem.css';
 
@@ -11,7 +11,7 @@ export default function ListItem (props) {
     }
     const handlerEdit = () => {
         if (typeof props.eventDelete === 'function') {
-            props.eventEdit(props.id)
+            props.eventEdit(props.id, props.title)
         }
     }
     const handlerSelect = (state) => {

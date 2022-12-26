@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import reactLogo from '../../assets/react.svg'
-import Button from '../Button/button';
+import Button from '../button/Button';
 import './header.css';
 
 export default function Header (props) {
