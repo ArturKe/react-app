@@ -27,7 +27,7 @@ export default function EditForm (props) {
             content={
                 <div className='edit-form'>
                     <div>Title:</div>
-                    <input type="text" placeholder='Title' defaultValue={title} onChange={(e) => setTitle(e.target.value)} />
+                    <input type="text" defaultValue={title} onChange={(e) => setTitle(e.target.value)} />
                     <div>Description:</div>
                     <input type="text" defaultValue={props.description} onChange={(e) => setDesc(e.target.value)}/>
                 </div>

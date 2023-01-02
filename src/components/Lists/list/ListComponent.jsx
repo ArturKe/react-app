@@ -15,27 +15,33 @@ export default function ListComponent (props) {
         {id: 3, title: 'Article about Bears', description: 'Hello world!!!', selected: false},
         {id: 4, title: 'Article about Dinosaurs', description: 'Hello world!!!', selected: false},
     ])
-    const deleteAllRecords = (id, title) => {
-        // toggleVisWarnModal()
-        console.log('Delete ALL')
-        setCheckBoxState(false)
-        setWarnModalTitle('Delete all records?')
-        deleteAllAction()
-    }
-    const deleteRecord = (id, title) => {
-        toggleVisWarnModal()
-        console.log('Delete record with id: ' + id + title)
-        setWarnModalTitle(`Delete record: "${title}"?`)
-        deleteAction(id)
-    }
-    const editRecord = (id, title, description) => {
+
+    const createRecord = () => {
         toggleVisEditForm()
+        setWarnModalType('create')
+        setWarnModalTitle('')
+        setWarnModalDesc('')  
+    }
+    const createRecordAccept = (id, title, description) => {
+        toggleVisEditForm()
+        console.log(title + description)
+        if (title.length > 0 || description.length > 0) {
+            let newItem = [...items]
+            // newItem.push({id: +new Date, title: (new Date).toString(), description: 'Hello world!!!', selected: false},)
+            newItem.push({id: +new Date, title, description, selected: false, created: (new Date).toString()},)
+            setItems(newItem)
+        }
+    }
+
+    const editRecordEvent = (id, title, description) => {
+        toggleVisEditForm()
+        setWarnModalType('edit')
         setWarnModalId(id)
         setWarnModalTitle(title)
         setWarnModalDesc(description)  
         console.log('Edit record with id: ' + id + title + description)
     }
-    const acceptEditModal = (id, title, description) => {
+    const editRecordAccept = (id, title, description) => {
         toggleVisEditForm()
         console.log('Accept record with: ' + id + title + description)
 
@@ -50,16 +56,33 @@ export default function ListComponent (props) {
         setItems(newItems)
         console.log(items)
     }
-    const selectAll = (state) => {
-        setCheckBoxState(state)
-        let newItem = items.map((item) => ({ ...item, selected: state}))
-        setItems(newItem)
+
+    const deleteAllRecordsEvent = () => {
+        if (amountSelectedRecords > 0) {
+            toggleVisWarnModal()
+            setWarnModalType('delete-all')
+            setWarnModalTitle(amountSelectedRecords > 1 ? `Delete ${amountSelectedRecords} records?` : `Delete this record?` )
+        }
     }
-    const createRecord = () => {
-        let newItem = [...items]
-        newItem.push({id: +new Date, title: (new Date).toString(), description: 'Hello world!!!', selected: false},)
-        setItems(newItem)
+    const deleteAllRecordsAccept = () => {
+        toggleVisWarnModal()
+        setCheckBoxState(false)
+        setWarnModalTitle('Delete all records?')
+        deleteAllAction()
     }
+
+    const deleteRecordEvent = (id, title) => {
+        toggleVisWarnModal()
+        setWarnModalType('delete')
+        setWarnModalId(id)
+        setWarnModalTitle(`Delete record: "${title}"?`)
+    }
+    const deleteRecordAccept = (id) => {
+        toggleVisWarnModal()
+        deleteAction(warnModalId)
+    }
+
+    // Select actions
     const selectRecord = (id, state) =>{
         console.log(`Id: ${id}, State: ${state}`)
         let newItem = items.map((record) => {
@@ -67,17 +90,47 @@ export default function ListComponent (props) {
         })
         setItems(newItem)
     }
+    const selectAll = (state) => {
+        setCheckBoxState(state)
+        let newItem = items.map((item) => ({ ...item, selected: state}))
+        setItems(newItem)
+    }
+
+    const checkSelectedRecords = () => {
+        const amountRecords = (items.filter((record) => record.selected ) || []).length
+        setAmountSelectedRecords(amountRecords)
+    }
+    useEffect(() => {
+        checkSelectedRecords()
+    }, [items])
+
     // Actions
     const deleteAction = (id) => {
-        console.log(id)
         let newItem = items.filter((record) => record.id !== id )
-        console.log(newItem)
         setItems(newItem)
     }
     const deleteAllAction = () => {
         let newItem = items.filter((record) => !record.selected)
-        console.log(newItem)
         setItems(newItem)
+    }
+
+    const acceptHandler = (type) => {
+        let functionHandler = () => {}
+        switch (type) {
+            case 'delete':
+                functionHandler = deleteRecordAccept
+                break
+            case 'delete-all':
+                functionHandler = deleteAllRecordsAccept
+                break
+            case 'edit':
+                functionHandler = editRecordAccept
+                break
+            case 'create':
+                functionHandler = createRecordAccept
+                break
+        }
+        return functionHandler
     }
 
     // Modals
@@ -86,9 +139,18 @@ export default function ListComponent (props) {
     const [warnModalTitle, setWarnModalTitle] = useState('')
     const [warnModalDesc, setWarnModalDesc] = useState('')
     const [warnModalId, setWarnModalId] = useState(0)
+    const [warnModalType, setWarnModalType] = useState('')
+    const [amountSelectedRecords, setAmountSelectedRecords] = useState(0)
 
     const modalWarn = () => {
-        return warnModalVisible ? <WarnModal title={warnModalTitle} event={toggleVisWarnModal}></WarnModal> : null
+        return warnModalVisible ?
+            <WarnModal 
+                title={warnModalTitle}
+                event={toggleVisWarnModal}
+                // acceptDelete={deleteRecordAccept}
+                acceptDelete={acceptHandler(warnModalType)}
+                >
+            </WarnModal> : null
     }
     const editForm = () => {
         return EditFormVisible ?
@@ -97,7 +159,7 @@ export default function ListComponent (props) {
                 title={warnModalTitle} 
                 description={warnModalDesc} 
                 event={toggleVisEditForm}
-                acceptEdit={acceptEditModal}
+                acceptEdit={acceptHandler(warnModalType)}
                 >
             </EditForm> : null
     }
@@ -108,20 +170,21 @@ export default function ListComponent (props) {
         <div className='list'>
             {modalWarn()}
             {editForm()}
-            <div className='list-header'>Header</div>
+            <div className='list-header'>CRUD Form</div>
             <div className='list-controll'>
                 <Checkbox isActive={checkBoxState} event={selectAll}></Checkbox>
+                <div>Selected rows: {amountSelectedRecords}</div>
                 <div className='list-controll-buttons'>
                     <Button event={createRecord}>Create</Button>
-                    <Button event={deleteAllRecords}>Delete All Selected</Button>
+                    <Button event={deleteAllRecordsEvent}>Delete All Selected</Button>
                 </div>
             </div>
             <div className='list-content'>
                 <div className='list-content-item'>Row</div>
                 {items.map((item, index) => {
                     return <ListItem 
-                        eventDelete = {deleteRecord}
-                        eventEdit = {editRecord}
+                        eventDelete = {deleteRecordEvent}
+                        eventEdit = {editRecordEvent}
                         eventSelect = {selectRecord}
                         id={item.id}
                         selected={item.selected}

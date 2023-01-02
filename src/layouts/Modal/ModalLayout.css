@@ -10,3 +10,7 @@
     display: grid;
     place-content: center;
 }
+
+.modal-layout-content {
+    margin: 10px;
+}

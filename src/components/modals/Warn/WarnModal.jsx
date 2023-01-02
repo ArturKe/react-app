@@ -6,7 +6,10 @@ export default function WarnModal (props) {
                 props.event()
                 console.log('Close')
             }
-    const acceptHandler = () => {console.log("Accept")}
+    const acceptHandler = () => {
+        props.acceptDelete()
+        console.log("Accept")
+    }
 
     return (
         <ModalWrapper
