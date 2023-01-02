@@ -1,7 +1,7 @@
-import ModalWrapper from '../modal-wrapper/ModalWrapper';
+import ModalWrapper from '../../modals/modal-wrapper/ModalWrapper';
 import Button from '../../button/Button';
 import './EditForm.css'
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function EditForm (props) {
     const closeHandler = () => {
@@ -20,14 +20,20 @@ export default function EditForm (props) {
     const [title, setTitle] = useState(props.title)
     const [desc, setDesc] = useState(props.description)
 
+    const textInput = useRef(null)
+    useEffect(() => {
+        console.log(textInput)
+        textInput.current.focus()
+    })
+
     return (
         <ModalWrapper
             eventClose={closeHandler}
-            header={'Edit Record: ' + props.title}
+            header={props.type ==='edit' ? 'Edit Record: ' + props.title : 'Create record' }
             content={
                 <div className='edit-form'>
                     <div>Title:</div>
-                    <input type="text" defaultValue={title} onChange={(e) => setTitle(e.target.value)} />
+                    <input type="text" ref={textInput} defaultValue={title} onChange={(e) => setTitle(e.target.value)} />
                     <div>Description:</div>
                     <input type="text" defaultValue={props.description} onChange={(e) => setDesc(e.target.value)}/>
                 </div>

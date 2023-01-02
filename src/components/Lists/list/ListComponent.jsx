@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Button from '../../button/Button';
 import Checkbox from '../../checkbox/Checkbox';
-import EditForm from '../../modals/edit/EditForm';
-import WarnModal from '../../modals/Warn/WarnModal';
+import EditForm from '../../forms/edit/EditForm';
+import WarnModal from '../../modals/warn/WarnModal';
 import ListItem from '../Item/ListItem';
 import './listComponent.css';
 
@@ -16,7 +16,7 @@ export default function ListComponent (props) {
         {id: 4, title: 'Article about Dinosaurs', description: 'Hello world!!!', selected: false},
     ])
 
-    const createRecord = () => {
+    const createRecordEvent = () => {
         toggleVisEditForm()
         setWarnModalType('create')
         setWarnModalTitle('')
@@ -39,7 +39,7 @@ export default function ListComponent (props) {
         setWarnModalId(id)
         setWarnModalTitle(title)
         setWarnModalDesc(description)  
-        console.log('Edit record with id: ' + id + title + description)
+        // console.log('Edit record with id: ' + id + title + description)
     }
     const editRecordAccept = (id, title, description) => {
         toggleVisEditForm()
@@ -84,7 +84,6 @@ export default function ListComponent (props) {
 
     // Select actions
     const selectRecord = (id, state) =>{
-        console.log(`Id: ${id}, State: ${state}`)
         let newItem = items.map((record) => {
             return record.id === id ? { ...record, selected: state} : record
         })
@@ -147,14 +146,14 @@ export default function ListComponent (props) {
             <WarnModal 
                 title={warnModalTitle}
                 event={toggleVisWarnModal}
-                // acceptDelete={deleteRecordAccept}
                 acceptDelete={acceptHandler(warnModalType)}
                 >
             </WarnModal> : null
     }
     const editForm = () => {
         return EditFormVisible ?
-            <EditForm 
+            <EditForm
+                type={warnModalType}
                 id={warnModalId}
                 title={warnModalTitle} 
                 description={warnModalDesc} 
@@ -175,7 +174,7 @@ export default function ListComponent (props) {
                 <Checkbox isActive={checkBoxState} event={selectAll}></Checkbox>
                 <div>Selected rows: {amountSelectedRecords}</div>
                 <div className='list-controll-buttons'>
-                    <Button event={createRecord}>Create</Button>
+                    <Button event={createRecordEvent}>Create</Button>
                     <Button event={deleteAllRecordsEvent}>Delete All Selected</Button>
                 </div>
             </div>

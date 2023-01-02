@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import PageLayout from './layouts/Page/PageLayout'
 import Header from './components/header/Header'
-import ListComponent from './components/Lists/list/ListComponent'
+import ListComponent from './components/lists/list/ListComponent'
 
 
 function App() {

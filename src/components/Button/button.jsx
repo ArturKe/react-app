@@ -11,8 +11,7 @@ export default function Button (props) {
         }
     }
     return (
-        <div>
-            <button onClick={() => handler()} className="customButton">{props.children || props.name}</button>
-        </div>
+        <button onClick={() => handler()} className="customButton">{props.children || props.name}</button>
+
     )
 }

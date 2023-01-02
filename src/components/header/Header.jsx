@@ -10,9 +10,8 @@ export default function Header (props) {
                 <img src={reactLogo} className="logo react" alt="React logo" />
             </div>
             <div className='header_component-buttons'>
-                <Button>Page 1</Button>
-                <Button>Page 2</Button>
-                <Button>Page 3</Button>
+                <Button>CRUD</Button>
+                <Button>Information</Button>
             </div>
             {props.children}
         </div>

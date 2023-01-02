@@ -14,7 +14,9 @@ export default function WarnModal (props) {
             <div className='warn-modal'>
                 <div className='warn-modal-header'>
                     <div className='warn-modal-header_title'>{props.header}</div>
-                    <Button event={closeHandler}>Close</Button>
+                    <div>
+                        <Button event={closeHandler}>Close</Button>
+                    </div>
                 </div>
                 <div className='warn-modal-content'>{props.content}</div>
                 <div className='warn-modal-buttons'>{props.footer}</div>
