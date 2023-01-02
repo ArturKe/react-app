@@ -1,13 +1,24 @@
 import ModalWrapper from '../modal-wrapper/ModalWrapper';
 import Button from '../../button/Button';
 import './EditForm.css'
+import { useState } from 'react';
 
 export default function EditForm (props) {
     const closeHandler = () => {
-                props.event()
-                console.log('Close')
-            }
-    const acceptHandler = () => {console.log("Accept")}
+        if (checkTypeFunc(props.event)) {
+            props.event()
+        }
+    }
+    const acceptEditHandler = () => {
+        if (checkTypeFunc(props.acceptEdit)) {
+            props.acceptEdit(props.id, title, desc)
+        }
+    }
+    const checkTypeFunc = (props) => {
+        return typeof props === 'function' ? true : false
+    }
+    const [title, setTitle] = useState(props.title)
+    const [desc, setDesc] = useState(props.description)
 
     return (
         <ModalWrapper
@@ -15,12 +26,13 @@ export default function EditForm (props) {
             header={'Edit Record: ' + props.title}
             content={
                 <div className='edit-form'>
-                    <input type="text" placeholder={props.title} defaultValue={props.title} />
+                    <div>Title:</div>
+                    <input type="text" placeholder='Title' defaultValue={title} onChange={(e) => setTitle(e.target.value)} />
                     <div>Description:</div>
-                    <input type="text" />
+                    <input type="text" defaultValue={props.description} onChange={(e) => setDesc(e.target.value)}/>
                 </div>
             }
-            footer={<Button event={acceptHandler}>Ok</Button>}
+            footer={<Button event={acceptEditHandler}>Ok</Button>}
         ></ModalWrapper>
     )
 }

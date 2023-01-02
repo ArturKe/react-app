@@ -9,11 +9,11 @@ import './listComponent.css';
 export default function ListComponent (props) {
     const [checkBoxState, setCheckBoxState] = useState(false)
     const [items, setItems] = useState([
-        {id: 0, title: 'Firsdt Article', selected: false},
-        {id: 1, title: 'Second Article', selected: false},
-        {id: 2, title: 'Third Article', selected: true},
-        {id: 3, title: 'Article about Bears', selected: false},
-        {id: 4, title: 'Article about Dinosaurs', selected: false},
+        {id: 0, title: 'Firsdt Article', description: 'Hello world!!!', selected: false},
+        {id: 1, title: 'Second Article', description: 'Hello world!!!', selected: false},
+        {id: 2, title: 'Third Article', description: 'Hello world!!!', selected: true},
+        {id: 3, title: 'Article about Bears', description: 'Hello world!!!', selected: false},
+        {id: 4, title: 'Article about Dinosaurs', description: 'Hello world!!!', selected: false},
     ])
     const deleteAllRecords = (id, title) => {
         // toggleVisWarnModal()
@@ -28,10 +28,27 @@ export default function ListComponent (props) {
         setWarnModalTitle(`Delete record: "${title}"?`)
         deleteAction(id)
     }
-    const editRecord = (id, title) => {
+    const editRecord = (id, title, description) => {
         toggleVisEditForm()
+        setWarnModalId(id)
         setWarnModalTitle(title)
-        console.log('Edit record with id: ' + id + title)
+        setWarnModalDesc(description)  
+        console.log('Edit record with id: ' + id + title + description)
+    }
+    const acceptEditModal = (id, title, description) => {
+        toggleVisEditForm()
+        console.log('Accept record with: ' + id + title + description)
+
+        let newItems = [...items]
+
+        let editItem = newItems.find((item) => item.id === id)
+        editItem.title = title
+        editItem.description = description
+
+        console.log(editItem)
+        console.log(newItems)
+        setItems(newItems)
+        console.log(items)
     }
     const selectAll = (state) => {
         setCheckBoxState(state)
@@ -40,7 +57,7 @@ export default function ListComponent (props) {
     }
     const createRecord = () => {
         let newItem = [...items]
-        newItem.push({id: +new Date, title: (new Date).toString(), selected: false},)
+        newItem.push({id: +new Date, title: (new Date).toString(), description: 'Hello world!!!', selected: false},)
         setItems(newItem)
     }
     const selectRecord = (id, state) =>{
@@ -67,11 +84,22 @@ export default function ListComponent (props) {
     const [warnModalVisible, setWarnModalVisible] = useState(false)
     const [EditFormVisible, setEditFormVisible] = useState(false)
     const [warnModalTitle, setWarnModalTitle] = useState('')
+    const [warnModalDesc, setWarnModalDesc] = useState('')
+    const [warnModalId, setWarnModalId] = useState(0)
+
     const modalWarn = () => {
         return warnModalVisible ? <WarnModal title={warnModalTitle} event={toggleVisWarnModal}></WarnModal> : null
     }
     const editForm = () => {
-        return EditFormVisible ? <EditForm title={warnModalTitle} event={toggleVisEditForm}></EditForm> : null
+        return EditFormVisible ?
+            <EditForm 
+                id={warnModalId}
+                title={warnModalTitle} 
+                description={warnModalDesc} 
+                event={toggleVisEditForm}
+                acceptEdit={acceptEditModal}
+                >
+            </EditForm> : null
     }
     const toggleVisWarnModal = () => {setWarnModalVisible(!warnModalVisible)}
     const toggleVisEditForm = () => {setEditFormVisible(!EditFormVisible)}
@@ -97,7 +125,8 @@ export default function ListComponent (props) {
                         eventSelect = {selectRecord}
                         id={item.id}
                         selected={item.selected}
-                        title={item.title} 
+                        title={item.title}
+                        description = {item.description}
                         key={item.id}
                     ></ListItem>
                 })}

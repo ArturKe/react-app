@@ -11,7 +11,7 @@ export default function ListItem (props) {
     }
     const handlerEdit = () => {
         if (typeof props.eventDelete === 'function') {
-            props.eventEdit(props.id, props.title)
+            props.eventEdit(props.id, props.title, props.description)
         }
     }
     const handlerSelect = (state) => {
