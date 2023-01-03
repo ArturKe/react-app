@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+// import React, { useContext, useState } from 'react';
+import { Link, Outlet } from "react-router-dom";
 import reactLogo from '../../assets/react.svg'
 import Button from '../button/Button';
 import './header.css';
@@ -10,8 +11,12 @@ export default function Header (props) {
                 <img src={reactLogo} className="logo react" alt="React logo" />
             </div>
             <div className='header_component-buttons'>
-                <Button>CRUD</Button>
-                <Button>Information</Button>
+                <Link to="/">
+                    <Button>CRUD</Button>
+                </Link>
+                <Link to="/info">
+                    <Button>Information</Button>
+                </Link>
             </div>
             <div className='header_component_user-control'>
                 <Button>Login</Button>

@@ -3,7 +3,7 @@ import './App.css'
 import PageLayout from './layouts/Page/PageLayout'
 import Header from './components/header/Header'
 import ListComponent from './components/lists/list/ListComponent'
-// import { Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
 
 
 function App() {
@@ -21,25 +21,39 @@ function App() {
     //   ['Accept'],
     // ]
     const config = {
-      method: 'GET'
-      // mode: 'no-cors'
+        method: 'GET'
+        // mode: 'no-cors'
     }
     try {
-      // fetch(link, config).then((res) => console.log(res)).then(data => console.log(data))
-      const response = await fetch(link, config)
-      console.log(await response.json())
+        // fetch(link, config).then((res) => console.log(res)).then(data => console.log(data))
+        const response = await fetch(link, config)
+        console.log(await response.json())
     } catch (error) {
-      console.log('No Data')
+        console.log('No Data')
     }
   }
 
   const fromChild = () => {console.log("Hello from Child")}
 
   return (
-    <PageLayout
-      header={<Header></Header>}
-      blocCenter={<ListComponent/>}
-    />
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={
+                <PageLayout
+                    header={<Header></Header>}
+                    blocCenter={<ListComponent/>}
+                />}
+            />
+            <Route path="/info" element={
+                <PageLayout
+                    header={<Header></Header>}
+                    blocCenter={<div>Here is some info!</div>}
+                />}
+            />
+        </Routes>
+
+    </BrowserRouter>
+
 
     // <Routes>
     //   <Route path="/" element={<ListComponent/>} />

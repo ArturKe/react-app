@@ -6,13 +6,13 @@ export default function Checkbox (props) {
     const [checkBoxState, setCheckBoxState] = useState(props.isActive || false)
     const handler = () => {
         setCheckBoxState(!checkBoxState)
-        console.log(checkBoxState)
+        // console.log(checkBoxState)
         if (typeof props.event === 'function') {
             props.event(!checkBoxState)
         }
     }
     useEffect(() => {
-        console.log('CheckBox Props: ' + props.isActive)
+        // console.log('CheckBox Props: ' + props.isActive)
         setCheckBoxState(props.isActive)
     },[props.isActive])
     return (
