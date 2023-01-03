@@ -98,6 +98,7 @@ export default function ListComponent (props) {
     const checkSelectedRecords = () => {
         const amountRecords = (items.filter((record) => record.selected ) || []).length
         setAmountSelectedRecords(amountRecords)
+        setAmountRecords(items.length)
     }
     useEffect(() => {
         checkSelectedRecords()
@@ -140,6 +141,7 @@ export default function ListComponent (props) {
     const [warnModalId, setWarnModalId] = useState(0)
     const [warnModalType, setWarnModalType] = useState('')
     const [amountSelectedRecords, setAmountSelectedRecords] = useState(0)
+    const [amountRecords, setAmountRecords] = useState(0)
 
     const modalWarn = () => {
         return warnModalVisible ?
@@ -179,8 +181,8 @@ export default function ListComponent (props) {
                 </div>
             </div>
             <div className='list-content'>
-                <div className='list-content-item'>Row</div>
-                {items.map((item, index) => {
+                <div className='list-content-item'>Rows: {amountRecords}</div>
+                {items.map(item => {
                     return <ListItem 
                         eventDelete = {deleteRecordEvent}
                         eventEdit = {editRecordEvent}

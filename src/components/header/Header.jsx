@@ -13,7 +13,10 @@ export default function Header (props) {
                 <Button>CRUD</Button>
                 <Button>Information</Button>
             </div>
-            {props.children}
+            <div className='header_component_user-control'>
+                <Button>Login</Button>
+                <Button>Join us</Button>
+            </div>
         </div>
     )
 }

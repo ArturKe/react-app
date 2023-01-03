@@ -7,4 +7,12 @@ input {
     border: 1px solid #cacaca;
     border-radius: 10px;
     margin-bottom: 5px;
+    transition: all 0.3s;
+}
+
+input:focus-visible {
+    outline: none !important;
+    border-bottom: 3px solid rgb(69, 69, 69);
+    padding-left: 15px;
+    transition: all 0.3s;
 }
