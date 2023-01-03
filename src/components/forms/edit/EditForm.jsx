@@ -4,31 +4,23 @@ import './EditForm.css'
 import { useState, useEffect, useRef } from 'react';
 
 export default function EditForm (props) {
-    const closeHandler = () => {
-        if (checkTypeFunc(props.event)) {
-            props.event()
-        }
-    }
+    const {event=()=>{}, acceptEdit=()=>{}} = props
+
     const acceptEditHandler = () => {
-        if (checkTypeFunc(props.acceptEdit)) {
-            props.acceptEdit(props.id, title, desc)
-        }
+        acceptEdit(props.id, title, desc)
     }
-    const checkTypeFunc = (props) => {
-        return typeof props === 'function' ? true : false
-    }
+
     const [title, setTitle] = useState(props.title)
     const [desc, setDesc] = useState(props.description)
 
     const textInput = useRef(null)
     useEffect(() => {
-        console.log(textInput)
         textInput.current.focus()
-    })
+    }, [])
 
     return (
         <ModalWrapper
-            eventClose={closeHandler}
+            eventClose={event}
             header={props.type ==='edit' ? 'Edit Record: ' + props.title : 'Create record' }
             content={
                 <div className='edit-form'>

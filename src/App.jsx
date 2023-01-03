@@ -3,11 +3,11 @@ import './App.css'
 import PageLayout from './layouts/Page/PageLayout'
 import Header from './components/header/Header'
 import ListComponent from './components/lists/list/ListComponent'
+// import { Routes, Route} from 'react-router-dom'
 
 
 function App() {
   const [count, setCount] = useState(0)
-  const [name, setName] = useState('Ivan')
   const [data, setData] = useState(0)
   const minus = () => setCount((count) => count - 1)
   const plus = () => setCount((count) => count + 1)
@@ -38,8 +38,12 @@ function App() {
   return (
     <PageLayout
       header={<Header></Header>}
-      blocCenter={<ListComponent></ListComponent>}
-    ></PageLayout>
+      blocCenter={<ListComponent/>}
+    />
+
+    // <Routes>
+    //   <Route path="/" element={<ListComponent/>} />
+    // </Routes>
   )
 }
 

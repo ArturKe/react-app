@@ -10,7 +10,9 @@ export default function WarnModal (props) {
     }
 
     return (
-        <ModalLayout>
+        <ModalLayout
+            closeEvent={closeHandler}
+        >
             <div className='warn-modal'>
                 <div className='warn-modal-header'>
                     <div className='warn-modal-header_title'>{props.header}</div>
