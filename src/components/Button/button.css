@@ -8,6 +8,10 @@
     background-color: #e6e6e6;
     cursor: pointer;
     transition: transform 0.25s, border-color 0.2s;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .customButton:hover{

@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
-// import { useEffect } from 'react';
 import './Checkbox.css';
 
 export default function Checkbox (props) {
     const [checkBoxState, setCheckBoxState] = useState(props.isActive || false)
+    const {event=()=>{}} = props
+
     const handler = () => {
         setCheckBoxState(!checkBoxState)
-        // console.log(checkBoxState)
-        if (typeof props.event === 'function') {
-            props.event(!checkBoxState)
-        }
+        event(!checkBoxState)
     }
     useEffect(() => {
-        // console.log('CheckBox Props: ' + props.isActive)
         setCheckBoxState(props.isActive)
     },[props.isActive])
     return (

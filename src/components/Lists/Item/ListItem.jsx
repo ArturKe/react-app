@@ -1,33 +1,31 @@
 import React, {useEffect} from 'react';
 import Button from '../../button/Button';
 import Checkbox from '../../checkbox/Checkbox';
+// import { EditIcon } from '../../icons/EditIcon';
+import { EditIcon, DeleteIcon } from '../../icons';
+
 import './ListItem.css';
 
 export default function ListItem (props) {
+    const {eventEdit=()=>{}, eventDelete=()=>{}, eventSelect=()=>{}} = props
+
     const handlerDelete = () => {
-        if (typeof props.eventDelete === 'function') {
-            props.eventDelete(props.id, props.title)
-        }
+        eventDelete(props.id, props.title)
     }
     const handlerEdit = () => {
-        if (typeof props.eventDelete === 'function') {
-            props.eventEdit(props.id, props.title, props.description)
-        }
+        eventEdit(props.id, props.title, props.description)
     }
     const handlerSelect = (state) => {
-        console.log('State: ' + state)
-        if (typeof props.eventSelect === 'function') {
-            props.eventSelect(props.id, state)
-        }
+        eventSelect(props.id, state)
     }
-    // useEffect(() => {console.log(props.id + ' ' + props.selected)},[props.selected])
+
     return (
         <div className='list-item'>
             <Checkbox event={handlerSelect} isActive={props.selected}></Checkbox>
             <div className='list-item-title'>{props.title || 'Some Title'}</div>
             <div className='list-item-buttons'>
-                <Button event={handlerEdit}>Edit</Button>
-                <Button event={handlerDelete}>Delete</Button>
+                <Button icon={<EditIcon/>} event={handlerEdit}>Edit</Button>
+                <Button icon={<DeleteIcon/>} event={handlerDelete}>Delete</Button>
             </div>
         </div>
     )

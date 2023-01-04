@@ -24,10 +24,18 @@ export default function EditForm (props) {
             header={props.type ==='edit' ? 'Edit Record: ' + props.title : 'Create record' }
             content={
                 <div className='edit-form'>
-                    <div>Title:</div>
-                    <input type="text" ref={textInput} defaultValue={title} onChange={(e) => setTitle(e.target.value)} />
-                    <div>Description:</div>
-                    <input type="text" defaultValue={props.description} onChange={(e) => setDesc(e.target.value)}/>
+                    <div className='edit-form_labels'>
+                        <div className='edit-form_item'>Title:</div>
+                        <div className='edit-form_item'>Description:</div>
+                    </div>
+                    <div className='edit-form_inputs'>
+                        <div className='edit-form_item'>
+                            <input type="text" ref={textInput} defaultValue={title} onChange={(e) => setTitle(e.target.value)} />
+                        </div>
+                        <div className='edit-form_item'>
+                            <input type="text" defaultValue={props.description} onChange={(e) => setDesc(e.target.value)}/>
+                        </div>
+                    </div>
                 </div>
             }
             footer={<Button event={acceptEditHandler}>Ok</Button>}

@@ -1,13 +1,30 @@
-/* .edit-form {
-    width: 600px;
-} */
-
+.edit-form {
+    display: flex;
+    gap: 5px;
+}
+.edit-form_labels {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+.edit-form_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.edit-form_item {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
 input {
     padding: 8px;
     border: 1px solid #cacaca;
     border-radius: 10px;
-    margin-bottom: 5px;
     transition: all 0.3s;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 input:focus-visible {
