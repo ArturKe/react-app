@@ -2,8 +2,8 @@ export const EditIcon = () => {
     return(
         <svg 
             xmlns="http://www.w3.org/2000/svg" 
-            width="24" 
-            height="24" 
+            width="1.2em" 
+            height="1.2em" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 
@@ -21,8 +21,8 @@ export const DeleteIcon = () => {
     return(
         <svg
             xmlns="http://www.w3.org/2000/svg" 
-            width="1.5em" 
-            height="1.5em" 
+            width="1.2em" 
+            height="1.2em" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 
