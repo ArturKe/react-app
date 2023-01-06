@@ -5,6 +5,10 @@ import router from './routes/user.routes.js'
 
 const PORT = process.env.PORT || 3000
 
+import os from "os"
+console.log("Home directory:" + os.homedir())
+console. log("Current directory:", process. cwd())
+
 // app.use(express.static('../dist'));
 app.use(express.static('dist'));
 
