@@ -7,10 +7,7 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom'
 
 
 function App() {
-  const [count, setCount] = useState(0)
   const [data, setData] = useState(0)
-  const minus = () => setCount((count) => count - 1)
-  const plus = () => setCount((count) => count + 1)
 
   const fetchData = async () => {
     setData(data + 25)
@@ -33,7 +30,7 @@ function App() {
     }
   }
 
-  const fromChild = () => {console.log("Hello from Child")}
+  console.log(import.meta.env)
 
   return (
     <BrowserRouter>

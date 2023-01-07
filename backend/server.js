@@ -1,15 +1,18 @@
 import express from "express";
+import https from "https"
+// import fs from "fs"
+
+
 const app = express()
 // const useRouter = require('./routes/user.routes')
 import router from './routes/user.routes.js'
 
 const PORT = process.env.PORT || 3000
+// console.log(https)
 
 import os from "os"
 console.log("Home directory:" + os.homedir())
-console. log("Current directory:", process. cwd())
 
-// app.use(express.static('../dist'));
 app.use(express.static('dist'));
 
 app.get("/help", (req, res) => {
@@ -39,5 +42,14 @@ app.get('/*', (req, res) => {
 
 app.listen(PORT, () => {
 	console.log("Started api service on port: " + PORT)
-  console.log(process.cwd())
+  console.log("Current directory:", process.cwd())
 })
+
+// https.createServer({
+//   key: fs.readFileSync(process.cwd() + "\\key.pem"),
+//   cert: fs.readFileSync(process.cwd() + "\\cert.pem"),
+//   passphrase: 'Hello Brat'
+// }, app).listen(PORT, () => {
+//   console.log("Started api service on port: " + PORT)
+//   console.log("Current directory:", process.cwd())
+// })

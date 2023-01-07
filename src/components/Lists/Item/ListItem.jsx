@@ -24,8 +24,8 @@ export default function ListItem (props) {
             <Checkbox event={handlerSelect} isActive={props.selected}></Checkbox>
             <div className='list-item-title'>{props.title || 'Some Title'}</div>
             <div className='list-item-buttons'>
-                <Button icon={<EditIcon/>} event={handlerEdit}>Edit</Button>
-                <Button icon={<DeleteIcon/>} event={handlerDelete}>Delete</Button>
+                <Button icon={<EditIcon/>} event={handlerEdit}><div className="text-button">Edit</div></Button>
+                <Button icon={<DeleteIcon/>} event={handlerDelete}><div className="text-button">Delete</div></Button>
             </div>
         </div>
     )

@@ -28,3 +28,24 @@
     height: 3em;
     will-change: filter;
 }
+.header_component_mobile-menu{
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .header_component-buttons {
+        display: none;
+    }
+    .header_component_user-control {
+        display: none;
+    }
+    .header_component{
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        padding: 0px 15px;
+    }
+    .header_component_mobile-menu{
+        display: flex;
+        justify-self: end;
+    }
+}

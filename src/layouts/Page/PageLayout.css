@@ -1,13 +1,18 @@
 .page {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
 }
 .page-header {
     width: 100%;
 }
 .page-content {
     display: flex;
-    min-height: 100vh;
+    height: 100%;
     justify-content: center;
 }
 .page-content-center {

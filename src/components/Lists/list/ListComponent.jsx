@@ -5,6 +5,7 @@ import EditForm from '../../forms/edit/EditForm';
 import WarnModal from '../../modals/warn/WarnModal';
 import ListItem from '../Item/ListItem';
 import './listComponent.css';
+import { PlusSquare, PlusCircle, List, DeleteIcon } from '../../icons';
 
 export default function ListComponent (props) {
     const [checkBoxState, setCheckBoxState] = useState(false)
@@ -176,8 +177,8 @@ export default function ListComponent (props) {
                 <Checkbox isActive={checkBoxState} event={selectAll}></Checkbox>
                 <div>Selected rows: {amountSelectedRecords}</div>
                 <div className='list-controll-buttons'>
-                    <Button event={createRecordEvent}>Create</Button>
-                    <Button event={deleteAllRecordsEvent}>Delete All Selected</Button>
+                    <Button icon={<PlusCircle/>} event={createRecordEvent}><div className="text-button">Create</div></Button>
+                    <Button icon={<DeleteIcon/>} event={deleteAllRecordsEvent}><div className="list-icon-button">{<List/>}</div><div className="text-button">Delete All Selected</div></Button>
                 </div>
             </div>
             <div className='list-content'>
