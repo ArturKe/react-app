@@ -33,9 +33,9 @@
     gap: 10px;
     border-radius: 10px;
     color: white;
-    height: calc(100vh - 303px);
+    height: calc(100vh - 340px);
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .list-icon-button{
     display: none;
