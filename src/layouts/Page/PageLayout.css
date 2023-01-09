@@ -21,6 +21,15 @@
 }
 .page-footer {
     width: 100%;
-    min-height: 100px;
+    min-height: 80px;
     background-color:rgb(91 91 91);
 }
+
+/* @media screen and (max-width: 600px) {
+    .page-header {
+       position: fixed;
+    } 
+    .page-content {
+        margin-top: 60px;
+    }
+} */
