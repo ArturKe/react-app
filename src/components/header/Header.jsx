@@ -31,8 +31,20 @@ export default function Header (props) {
                 <Button>Login</Button>
                 <Button>Join us</Button>
             </div>
-            <div className='header_component_mobile-menu'>
+            <div className='mobile-menu'>
                 <Button icon={<Menu/>} event={toggleVisibility}>Menu</Button>
+            </div>
+            <div className = {['mobile-menu-list', `${mobileMenuVisible ? 'visible' : ''}`].join(' ')}>
+                <Link to="/">
+                    <Button event={toggleVisibility}>CRUD</Button>
+                </Link>
+                <Link to="/info">
+                    <Button event={toggleVisibility}>Information</Button>
+                </Link>
+                <div>
+                    <Button>Login</Button>
+                    <Button>Join us</Button>
+                </div>
             </div>
         </div>
     )

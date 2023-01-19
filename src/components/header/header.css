@@ -28,8 +28,16 @@
     height: 3em;
     will-change: filter;
 }
-.header_component_mobile-menu{
+.mobile-menu{
     display: none;
+}
+
+.mobile-menu-list{
+    display: none;
+}
+
+.mobile-menu-list.visible{
+    top: -100%;
 }
 
 @media screen and (max-width: 600px) {
@@ -44,8 +52,20 @@
         grid-template-columns: 60px 1fr;
         padding: 0px 15px;
     }
-    .header_component_mobile-menu{
+    .mobile-menu{
         display: flex;
         justify-self: end;
+    }
+    .mobile-menu-list{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        background: #838891;
+        width: 100%;
+        padding: 10px 0;
     }
 }
