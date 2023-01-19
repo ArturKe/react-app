@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './App.css'
-import PageLayout from './layouts/Page/PageLayout'
-import Header from './components/header/Header'
-import ListComponent from './components/lists/list/ListComponent'
+import PageLayout from '@/layouts/Page/PageLayout'
+import Header from '@/components/header/Header'
+import ListComponent from '@/components/lists/list/ListComponent'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 
 
