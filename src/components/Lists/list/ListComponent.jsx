@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Button from '../../button/Button';
-import Checkbox from '../../checkbox/Checkbox';
-import EditForm from '../../forms/edit/EditForm';
-import WarnModal from '../../modals/warn/WarnModal';
-import ListItem from '../Item/ListItem';
+import Button from '@/components/button/Button';
+import Checkbox from '@/components/checkbox/Checkbox';
+import EditForm from '@/components/forms/edit/EditForm';
+import WarnModal from '@/components/modals/warn/WarnModal';
+import ListItem from '@/components/lists/Item/ListItem';
 import './listComponent.css';
 import { PlusSquare, PlusCircle, List, DeleteIcon } from '../../icons';
 
