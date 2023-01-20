@@ -1,4 +1,7 @@
 .header_component {
+    width: 100%;
+}
+.header_component-wrapper {
     min-height: 65px;
     display: grid;
     grid-template-columns: 60px 1fr 1fr;
@@ -37,7 +40,11 @@
 }
 
 .mobile-menu-list.visible{
-    top: -100%;
+    top: 65px;
+}
+.mobile-menu-list .mobile-menu_login-buttons {
+    display: flex;
+    gap: 10px;
 }
 
 @media screen and (max-width: 600px) {
@@ -47,10 +54,12 @@
     .header_component_user-control {
         display: none;
     }
-    .header_component{
+    .header_component-wrapper{
         display: grid;
         grid-template-columns: 60px 1fr;
         padding: 0px 15px;
+        z-index: 5;
+        position: relative;
     }
     .mobile-menu{
         display: flex;
@@ -62,10 +71,21 @@
         align-items: center;
         gap: 10px;
         position: fixed;
-        top: 60px;
+        top: -100%;
         left: 0;
         background: #838891;
         width: 100%;
-        padding: 10px 0;
+        padding: 20px 10px 40px 10px;
+        transition: all 0.4s;
+        box-sizing: border-box;
+        border-radius: 0 0 25px 25px;
+        border: 3px solid #636363;
+        border-top: none;
+    }
+    .mobile-menu-list a{
+        width: 100%;
+    }
+    .mobile-menu-list a button{
+        width: 100%;
     }
 }

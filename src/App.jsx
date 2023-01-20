@@ -31,6 +31,8 @@ function App() {
   }
 
   console.log(import.meta.env)
+  console.log(import.meta.url)
+  console.log(new URL('./img.png', import.meta.url).href)
 
   return (
     <BrowserRouter>

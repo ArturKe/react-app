@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Button from '@/components/button/Button';
-import Checkbox from '@/components/checkbox/Checkbox';
-import EditForm from '@/components/forms/edit/EditForm';
-import WarnModal from '@/components/modals/warn/WarnModal';
-import ListItem from '@/components/lists/Item/ListItem';
-import './listComponent.css';
-import { PlusSquare, PlusCircle, List, DeleteIcon } from '../../icons';
+import Button from '@/components/button/Button.jsx';
+import Checkbox from '@/components/checkbox/Checkbox.jsx';
+import EditForm from '@/components/forms/edit/EditForm.jsx';
+import WarnModal from '@/components/modals/warn/WarnModal.jsx';
+import ListItem from '@/components/lists/Item/ListItem.jsx';
+import '@/components/lists/list/listComponent.css';
+import { PlusCircle, List, DeleteIcon } from '@/components/icons';
 
 export default function ListComponent (props) {
     const [checkBoxState, setCheckBoxState] = useState(false)
